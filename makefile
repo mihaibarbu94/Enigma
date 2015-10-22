@@ -1,10 +1,10 @@
 # edit this makefile so that running make compiles your enigma program
 
-enigma: Main.o
-	g++ -o enigma Main.o
+enigma: Main.o Components.o
+	g++ -std=c++11 Main.o Components.o -o enigma
 
-Main.o: Main.cpp
-	g++ -c Main.cpp
+Main.o: Main.cpp Components.cpp
+	g++ -c -std=c++11 Main.cpp Components.cpp
 
 clean:
 	rm -rf enigma *.o
