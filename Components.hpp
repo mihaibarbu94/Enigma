@@ -1,14 +1,12 @@
 #ifndef COMPONENTS_HPP
 #define COMPONENTS_HPP
 
-#include <memory>
-class Components
-{
-    public:
-        Components(shared_ptr <int> table);
+class Components{
     protected:
-    private:
-        int *table = nullptr;
+        Components();
+        virtual int encode(int input) = 0;
+        int *mapToLetters;
+
 };
 
 #endif // COMPONENTS_HPP

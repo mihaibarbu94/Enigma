@@ -19,3 +19,12 @@ bool isPlugboardFile(const char* fileName){
 bool isValidRotorInput (int num){
     return 0 <= num && num <=25;
 }
+
+int charToInt(char c){
+    return c - 'A';
+}
+
+int intToChar(int i){
+    return i + 'A';
+}
+
