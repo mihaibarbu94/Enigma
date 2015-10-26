@@ -10,8 +10,11 @@
 using namespace std;
 
 Rotor::Rotor(const char *fileName){
+    std::cout << "Hellorotor"<< std::endl;
     //TODO: should put the file manipulation in Utils
+    rotorConfig = new int[26];
     int input;
+    std::cout << "Hello2rotor"<< std::endl;
     ifstream inputFile;
     inputFile.open(fileName);
     if(inputFile.bad()){
@@ -22,6 +25,7 @@ Rotor::Rotor(const char *fileName){
     }
 
     //  Parse the file characters and add them into the appropriate structure
+    std::cout << "Hello3"<< std::endl;
 	while(inputFile >> input){
         int i = 0;
 		if(!(0 <= input || input < Encode::ALPHABET_SIZE) || i > Encode::ALPHABET_SIZE){

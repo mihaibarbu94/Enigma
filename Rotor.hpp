@@ -12,7 +12,7 @@ class Rotor : public Components{
         void rotate();
         int getNumOfRotations();
         void setNumOfRotations(int number);
-        int rotorConfig[];
+        int *rotorConfig;
 
     protected:
     private:

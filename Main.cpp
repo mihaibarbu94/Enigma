@@ -7,7 +7,7 @@
 #include "Encode.hpp"
 #include "Rotor.hpp"
 #include "Plugboard.hpp"
-//#include "Reflector.hpp"
+#include "Reflector.hpp"
 #include "Utils.hpp"
 
 
@@ -26,6 +26,7 @@ int main(int argc, char **argv){
     for(int i = 0; i < numOfRotorFiles; ++i)
     {
       rotorFiles[i] = new char[50];
+      cout << rotorFiles[i]<< "ferwf"<<endl;
     }
 
     for (int i = 0; i < numOfRotorFiles; ++i){
@@ -34,7 +35,7 @@ int main(int argc, char **argv){
             << " Please enter a correct file!" << endl;
             exit (EXIT_FAILURE);
         }
-        rotorFiles[i] = argv[i];
+        rotorFiles[i] = argv[i + 1];
     }
 
     const char* plugboardFile = argv[argc - 1];

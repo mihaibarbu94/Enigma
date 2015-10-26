@@ -5,8 +5,7 @@
 #include "Plugboard.hpp"
 #include "Reflector.hpp"
 
-class Encode
-{
+class Encode{
     public:
         Encode(char** rotorFiles , const char* plugBoardFile,
                int numOfRotorFiles);

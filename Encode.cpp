@@ -10,17 +10,21 @@ using namespace std;
 Encode::Encode(char** rotorFiles , const char* plugboardFile,
                int numOfRotorFiles)
 {
+    rotors = new Rotor*[numOfRotorFiles];
     // Create the rotors
     for(int i = 0; i < numOfRotorFiles; ++i){
+        std::cout << rotorFiles[i] << std::endl;
         rotors[i] = new Rotor(rotorFiles[i]);
+
     }
     std::cout << "Hello2"<< std::endl;
 
     // Create the plugboard
-	plugboard = new Plugboard(plugboardFile);
+	//plugboard = new Plugboard(plugboardFile);
+	std::cout << plugboardFile<< std::endl;
 
 		// Create the reflector
-	reflector = new Reflector();
+	//reflector = new Reflector();
 }
 
 char Encode::encryptChar(char c){
