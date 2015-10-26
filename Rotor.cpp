@@ -2,29 +2,36 @@
 #include "Encode.hpp"
 #include <cstring>
 #include <fstream>
+#include <iostream>
+#include <stdexcept>
+#include <stdlib.h>
+
 
 using namespace std;
 
 Rotor::Rotor(const char *fileName){
+    //TODO: should put the file manipulation in Utils
+    int input;
     ifstream inputFile;
     inputFile.open(fileName);
     if(inputFile.bad()){
         const string errorMessage =  "ERROR: could not open rotor file.";
-		throw std::invalid_argument(errorMessage);
+        inputFile.close();
+		cerr << errorMessage << endl;
+		exit (EXIT_FAILURE);
     }
 
     //  Parse the file characters and add them into the appropriate structure
-	while(inputFile >> y){
-		if(!(0 <= y || y < Encode::ALPHABET_SIZE)){
+	while(inputFile >> input){
+        int i = 0;
+		if(!(0 <= input || input < Encode::ALPHABET_SIZE) || i > Encode::ALPHABET_SIZE){
 			const string errorMessage =  "ERROR: non-supported character in the rotor file.";
-			throw std::invalid_argument(errorMessage);
+			cerr << errorMessage << endl;
+            exit (EXIT_FAILURE);
 		}
-		int i = 0;
-		rotorConfig[i] = y;
+		rotorConfig[i] = input;
 		++i;
 	}
-
-
     inputFile.close();
     numOfRotations = 0;
 
@@ -49,7 +56,6 @@ int Rotor::encodeBackwords(int input){
 bool Rotor::hasFullyRotated(){
 	return numOfRotations == Encode::ALPHABET_SIZE;
 }
-
 
 void Rotor::rotate(){
 	++numOfRotations;

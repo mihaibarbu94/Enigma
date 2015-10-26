@@ -3,6 +3,9 @@
 #include "Plugboard.hpp"
 #include "Reflector.hpp"
 #include "Utils.hpp"
+#include <iostream>
+
+using namespace std;
 
 Encode::Encode(char** rotorFiles , const char* plugboardFile,
                int numOfRotorFiles)
@@ -11,6 +14,7 @@ Encode::Encode(char** rotorFiles , const char* plugboardFile,
     for(int i = 0; i < numOfRotorFiles; ++i){
         rotors[i] = new Rotor(rotorFiles[i]);
     }
+    std::cout << "Hello2"<< std::endl;
 
     // Create the plugboard
 	plugboard = new Plugboard(plugboardFile);

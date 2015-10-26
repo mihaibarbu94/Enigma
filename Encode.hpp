@@ -18,7 +18,6 @@ class Encode
 
 		Plugboard *plugboard;
 		Reflector *reflector;
-
 		Rotor **rotors;
 
 		char encryptChar(char c);

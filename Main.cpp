@@ -7,7 +7,7 @@
 #include "Encode.hpp"
 #include "Rotor.hpp"
 #include "Plugboard.hpp"
-#include "Reflector.hpp"
+//#include "Reflector.hpp"
 #include "Utils.hpp"
 
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv){
     }
 
     int numOfRotorFiles = argc - 2;
-    char** rotorFiles = new char*[numOfRotorFiles];
+    char** rotorFiles = new char*[numOfRotorFiles]; //char** rotorFiles[numOfRotorFiles];
     for(int i = 0; i < numOfRotorFiles; ++i)
     {
       rotorFiles[i] = new char[50];
@@ -44,9 +44,10 @@ int main(int argc, char **argv){
             << " Please enter a correct file!" << endl;
             exit (EXIT_FAILURE);
     }
-
+    cout << "Hello"<< endl;
     try{
         Encode *encode = new Encode(rotorFiles, plugboardFile, numOfRotorFiles);
+        cout << "Hello1"<< endl;
         char c;
         while (cin >> ws >> c){
             encode->encryptChar(toupper(c));
