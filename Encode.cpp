@@ -1,72 +1,60 @@
 #include "Encode.hpp"
-#include "Rotor.hpp"
-#include "Plugboard.hpp"
-#include "Reflector.hpp"
-#include "Utils.hpp"
-#include <iostream>
 
 using namespace std;
 
 Encode::Encode(char** rotorFiles , const char* plugboardFile,
                int numOfRotorFiles)
 {
-    rotors = new Rotor*[numOfRotorFiles];
-    // Create the rotors
+    this->numOfRotorFiles = numOfRotorFiles;
     for(int i = 0; i < numOfRotorFiles; ++i){
-        std::cout << rotorFiles[i] << std::endl;
-        rotors[i] = new Rotor(rotorFiles[i]);
-
+        std::shared_ptr<Rotor> rotor (new Rotor(rotorFiles[i]));
+        rotors.push_back(rotor);
     }
-    std::cout << "Hello2"<< std::endl;
 
     // Create the plugboard
-	//plugboard = new Plugboard(plugboardFile);
-	std::cout << plugboardFile<< std::endl;
+	plugboard = new Plugboard(plugboardFile);
 
 		// Create the reflector
-	//reflector = new Reflector();
+	reflector = new Reflector();
 }
 
 char Encode::encryptChar(char c){
-    int i;
-    i = charToInt(c);
+    int enc;
+    enc = charToInt(c);
     // Plugboard first time
-    i = plugboard->encode(i);
+    enc = plugboard->encode(enc);
 
     // Rotors encoding
-    for(int i = 0; i < numOfRotorFiles; ++i){
-        i = rotors[i]->encode(i);
+    for(int i = 0; i < numOfRotorFiles; i++){
+        enc = rotors[i]->encode(enc);
     }
 
     // Reflector
-    i = reflector->encode(i);
+    enc = reflector->encode(enc);
 
     // Rotors encoding backwords
-    for(int i = 0; i < numOfRotorFiles; ++i){
-        i = rotors[i]->encodeBackwords(i);
+    for(int i = numOfRotorFiles - 1; i >= 0; i--){
+        enc = rotors[i]->encodeBackwords(enc);
     }
 
     // Plugboard second time
-    i = plugboard->encode(i);
+    enc = plugboard->encode(enc);
 
     // Rotate rotors
     if(numOfRotorFiles > 0){
         rotateRotors();
     }
 
-    return intToChar(i);
+    return intToChar(enc);
 }
 
 void Encode::rotateRotors() {
 	// Always rotate the first rotor
 	rotors[0]->rotate();
-
+	int i = 0;
+    while(rotors[i + 1] != NULL && rotors[i]->hasFullyRotated()){
+        rotors[++i]->rotate();
+    };
 	// Rotate the following rotors if necessary
-	for(int i = 0; i < numOfRotorFiles - 1; ++i){
-		if(rotors[i]->hasFullyRotated()){
-			rotors[i]->setNumOfRotations(0);
-			rotors[i + 1]->rotate();
-		}
-	}
 }
 

@@ -1,21 +1,23 @@
 #ifndef ROTOR_HPP
 #define ROTOR_HPP
 
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <stdexcept>
+#include <stdlib.h>
 #include "Components.hpp"
+
 
 class Rotor : public Components{
     public:
         Rotor(const char *fileName);
-        virtual int encode(int input);
+        int encode(int input);
         int encodeBackwords(int input);
         bool hasFullyRotated();
         void rotate();
-        int getNumOfRotations();
-        void setNumOfRotations(int number);
-        int *rotorConfig;
-
-    protected:
     private:
+        int rotorConfig[26];
         int numOfRotations;
 
 };
