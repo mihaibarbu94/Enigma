@@ -20,9 +20,6 @@ int main(int argc, char **argv){
 
     int numOfRotorFiles = argc - 2;
     char** rotorFiles = new char*[numOfRotorFiles];
-    for(int i = 0; i < numOfRotorFiles; ++i){
-      rotorFiles[i] = new char[MAX_NAME_SIZE];
-    }
 
     for (int i = 0; i < numOfRotorFiles; ++i){
         if (!isRotorFile(argv[i + 1])){

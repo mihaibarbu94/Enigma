@@ -7,7 +7,6 @@
 #include <stdlib.h>
 
 static const int ALPHABET_SIZE = 26;
-static const int MAX_NAME_SIZE = 256;
 
 bool isRotorFile(const char *fileName);
 bool isPlugboardFile(const char* fileName);
