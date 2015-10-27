@@ -3,8 +3,10 @@
 Encode::Encode(char** rotorFiles,
                const char* plugboardFile,
                int numOfRotorFiles){
+
     this->numOfRotorFiles = numOfRotorFiles;
 
+    // Create thw rotors
     for(int i = 0; i < numOfRotorFiles; ++i){
         std::shared_ptr<Rotor> rotor (new Rotor(rotorFiles[i]));
         rotors.push_back(rotor);
@@ -25,7 +27,7 @@ char Encode::encryptChar(char c){
     enc = plugboard->encode(enc);
 
     // Rotors encoding
-    for(int i = 0; i < numOfRotorFiles; i++){
+    for(int i = 0; i < numOfRotorFiles; ++i){
         enc = rotors[i]->encode(enc);
     }
 
@@ -33,7 +35,7 @@ char Encode::encryptChar(char c){
     enc = reflector->encode(enc);
 
     // Rotors encoding backwords
-    for(int i = numOfRotorFiles - 1; i >= 0; i--){
+    for(int i = numOfRotorFiles - 1; i >= 0; --i){
         enc = rotors[i]->encodeBackwords(enc);
     }
 

@@ -19,7 +19,7 @@ class Rotor : public Components{
         bool hasFullyRotated();
         void rotate();
     private:
-        int rotorConfig[ALPHABET_SIZE];
+        int *rotorConfig;
         int numOfRotations;
 
 };

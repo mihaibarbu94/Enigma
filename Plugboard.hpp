@@ -10,8 +10,6 @@
 #include "Components.hpp"
 #include "Utils.hpp"
 
-using namespace std;
-
 class Plugboard : public Components{
     public:
         Plugboard(const char *fileName);
