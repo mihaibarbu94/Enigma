@@ -8,14 +8,17 @@
 #include <stdlib.h>
 
 #include "Components.hpp"
+#include "Utils.hpp"
+
+using namespace std;
 
 class Plugboard : public Components{
     public:
         Plugboard(const char *fileName);
         int encode(int input);
     private:
-        int plugboardConfig[26];//Encode::ALPHABET_SIZE
-        bool boolPlugboardConfig[26];
+        int plugboardConfig[ALPHABET_SIZE];
+        bool boolPlugboardConfig[ALPHABET_SIZE];
 };
 
 #endif // PLUGBOARD_HPP

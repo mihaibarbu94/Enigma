@@ -7,7 +7,9 @@
 #include <stdexcept>
 #include <stdlib.h>
 #include "Components.hpp"
+#include "Utils.hpp"
 
+using namespace std;
 
 class Rotor : public Components{
     public:
@@ -17,7 +19,7 @@ class Rotor : public Components{
         bool hasFullyRotated();
         void rotate();
     private:
-        int rotorConfig[26];
+        int rotorConfig[ALPHABET_SIZE];
         int numOfRotations;
 
 };

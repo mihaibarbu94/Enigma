@@ -1,26 +1,21 @@
 #include "Rotor.hpp"
 
-using namespace std;
-
 Rotor::Rotor(const char *fileName){
-    //rotorConf = new std::vector<int>;
-
-    //std::cout << mapToLetters<< std::endl;
-
-    //ifstream inputFile;
-    std::ifstream fin(fileName);
     //  Parse the file characters and add them into the appropriate structure
+    ifstream fin(fileName);
     int i = 0;
     int input;
 	while(fin >> input){
-		/*if(!(0 <= input || input < Encode::ALPHABET_SIZE) || i > Encode::ALPHABET_SIZE){
-			const string errorMessage =  "ERROR: non-supported character in the rotor file.";
+		if(!(0 <= input || input < ALPHABET_SIZE) || i > ALPHABET_SIZE){
+			const string errorMessage =
+                            "ERROR: non-supported character in the rotor file.";
 			cerr << errorMessage << endl;
+			fin.close();
             exit (EXIT_FAILURE);
-		}*/
+		}
 		rotorConfig[i++] = input;
 	}
-    //inputFile.close();
+    fin.close();
     numOfRotations = 0;
 }
 
@@ -29,7 +24,7 @@ int Rotor::encode(int input){
 }
 
 int Rotor::encodeBackwords(int input){
-    for (int i = 0; i < 26; i++){
+    for (int i = 0; i < ALPHABET_SIZE; i++){
         if (input == rotorConfig[i]){
             return i;
         }
@@ -37,16 +32,17 @@ int Rotor::encodeBackwords(int input){
 }
 
 bool Rotor::hasFullyRotated(){
-	return numOfRotations % 26 == 0;
+	return numOfRotations % ALPHABET_SIZE == 0;
 }
 
 void Rotor::rotate(){
-    int rotorConfigCopy[26];
-    for (int i = 0; i < 26; i++){
+    int rotorConfigCopy[ALPHABET_SIZE];
+    for (int i = 0; i < ALPHABET_SIZE; i++){
         rotorConfigCopy[i] = rotorConfig[i];
     }
-    for(int i = 0; i < 26; i++) {
-        rotorConfig[(26 + i - 1) % 26] = (26 + rotorConfigCopy[i] - 1) % 26;
+    for(int i = 0; i < ALPHABET_SIZE; i++){
+        rotorConfig[(ALPHABET_SIZE + i - 1) % ALPHABET_SIZE] =
+                    (ALPHABET_SIZE + rotorConfigCopy[i] - 1) % ALPHABET_SIZE;
     }
 	++numOfRotations;
 }

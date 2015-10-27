@@ -1,11 +1,10 @@
 #include "Encode.hpp"
 
-using namespace std;
-
-Encode::Encode(char** rotorFiles , const char* plugboardFile,
-               int numOfRotorFiles)
-{
+Encode::Encode(char** rotorFiles,
+               const char* plugboardFile,
+               int numOfRotorFiles){
     this->numOfRotorFiles = numOfRotorFiles;
+
     for(int i = 0; i < numOfRotorFiles; ++i){
         std::shared_ptr<Rotor> rotor (new Rotor(rotorFiles[i]));
         rotors.push_back(rotor);
@@ -14,13 +13,14 @@ Encode::Encode(char** rotorFiles , const char* plugboardFile,
     // Create the plugboard
 	plugboard = new Plugboard(plugboardFile);
 
-		// Create the reflector
+    // Create the reflector
 	reflector = new Reflector();
 }
 
 char Encode::encryptChar(char c){
     int enc;
     enc = charToInt(c);
+
     // Plugboard first time
     enc = plugboard->encode(enc);
 
@@ -51,10 +51,11 @@ char Encode::encryptChar(char c){
 void Encode::rotateRotors() {
 	// Always rotate the first rotor
 	rotors[0]->rotate();
+
+	// Rotate the following rotors if necessary
 	int i = 0;
     while(rotors[i + 1] != NULL && rotors[i]->hasFullyRotated()){
         rotors[++i]->rotate();
     };
-	// Rotate the following rotors if necessary
 }
 

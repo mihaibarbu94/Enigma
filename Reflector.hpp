@@ -2,10 +2,9 @@
 #define REFLECTOR_HPP
 
 #include "Components.hpp"
-#include <fstream>
-//#include "Encode.hpp"
+#include"Utils.hpp"
 
-class Encode; // let the compiler know such a class will be defined
+#include <fstream>
 
 class Reflector : public Components{
     public:

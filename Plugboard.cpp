@@ -1,12 +1,10 @@
 #include "Plugboard.hpp"
 
-using namespace std;
-
 Plugboard::Plugboard(const char *fileName){
     //TODO: should put the file manipulation in Utils
     ifstream inputFile(fileName);
     if(inputFile.fail()){
-        const string errorMessage =  "ERROR: could not open rotor file.";
+        const string errorMessage = "ERROR: could not open rotor file.";
         inputFile.close();
 		cerr << errorMessage << endl;
 		exit (EXIT_FAILURE);
@@ -14,7 +12,7 @@ Plugboard::Plugboard(const char *fileName){
 
     int input1;
     int input2;
-    for (int i = 0; i < 26; i++){
+    for (int i = 0; i < ALPHABET_SIZE; i++){
         plugboardConfig[i] = i;
     }
     int i = 0;
