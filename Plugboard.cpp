@@ -19,6 +19,7 @@ Plugboard::Plugboard(const char *fileName){
         plugboardConfig[input1] = input2;
         plugboardConfig[input2] = input1;
     }
+    delete[] inputFileValues;
 }
 
 int Plugboard::encode(int input){

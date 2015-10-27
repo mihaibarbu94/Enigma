@@ -14,6 +14,7 @@ class Encode{
         Encode(char** rotorFiles,
                const char* plugBoardFile,
                int numOfRotorFiles);
+        ~Encode(void);
 		char encryptChar(char c);
     private:
         int numOfRotorFiles;

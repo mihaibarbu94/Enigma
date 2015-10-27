@@ -35,3 +35,7 @@ void Rotor::rotate(){
     }
 	++numOfRotations;
 }
+
+Rotor::~Rotor(void){
+    delete[] rotorConfig;
+}

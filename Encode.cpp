@@ -61,3 +61,8 @@ void Encode::rotateRotors() {
     };
 }
 
+Encode::~Encode(void){
+    delete plugboard;
+    delete reflector;
+}
+

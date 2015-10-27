@@ -9,11 +9,10 @@
 #include "Components.hpp"
 #include "Utils.hpp"
 
-using namespace std;
-
 class Rotor : public Components{
     public:
         Rotor(const char *fileName);
+        ~Rotor(void);
         int encode(int input);
         int encodeBackwords(int input);
         bool hasFullyRotated();

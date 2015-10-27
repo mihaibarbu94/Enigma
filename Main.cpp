@@ -50,5 +50,8 @@ int main(int argc, char **argv){
         }
     }
 
+    delete[] rotorFiles;
+    delete encode;
+
     return EXIT_SUCCESS ;
 }
